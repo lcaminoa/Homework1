@@ -29,7 +29,7 @@ void logMessage(const std::string& mensaje, NivelSeveridad nivel);
 void logMessage(const std::string& mensaje_de_error, const std::string& archivo, const int linea_codigo);
 
 /*
-    Función que registra un mensaje relacionado con accesos de usuarios en el archivo de log.
+    Registra un mensaje relacionado con accesos de usuarios en el archivo de log.
     Parámetros:
         - mensaje_acceso: Mensaje de acceso a escribir en el archivo de log
         - nombre_usuario: Nombre del usuario que intentó acceder
