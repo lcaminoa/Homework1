@@ -1,7 +1,7 @@
 /*
     Este programa crea una matriz dinámica de tamaño n x n, la llena con valores consecutivos
     empezando desde 1, la imprime en orden inverso (de atrás para adelante) y después libera la memoria.
-    El programa usa manejo de excepciones para capturar errores de asignación de memoria y asegura que
+    El programa try y catch para capturar errores de asignación de memoria y asegurarse que
     no haya leaks de memoria al liberar.
 */
 
@@ -12,9 +12,14 @@
 using namespace std;
 
 int** creatematrix(size_t n) {
+    int** matrix = nullptr; // Inicializar el puntero a nullptr para manejar errores en el catch
     try {
-        int** matrix = new int*[n]; // Crear un array de punteros para las filas
-        int valor = 1; // Valor inicial que irá aumentando en cada celda
+        matrix = new int*[n]; // Crear un array de punteros para las filas
+        for (size_t i = 0; i < n; i++) {
+            matrix[i] = nullptr; // Inicializar cada puntero de fila a nullptr para manejar errores en el catch
+        }
+
+        int valor = 1; // Valor inicial que va a ir aumentando en cada celda
         for (size_t i = 0; i < n; i++) {
             matrix[i] = new int[n]; // Crear un array para cada fila
             for (size_t j = 0; j < n; j++) {
@@ -24,6 +29,15 @@ int** creatematrix(size_t n) {
         return matrix; // Retornar el puntero a la matriz
     }
     catch (bad_alloc& e) {
+        // Libero la memoria de las filas que ya se crearon
+        if (matrix != nullptr) {
+            for (size_t i = 0; i < n; i++) {
+                if (matrix[i] != nullptr) { // Libero solo las filas asignadas
+                    delete[] matrix[i];
+                }
+            }
+            delete[] matrix; // Libero el array de punteros
+        }
         // Capturar errores de asignación de memoria y mostrar un mensaje de error
         cerr << "Error al reservar memoria para la matriz: " << e.what() << endl;
         throw; // Relanzar la excepción para que se maneje en otro lugar
@@ -39,6 +53,7 @@ void printmatrix(int** matrix, size_t n) {
 }
 
 void freematrix(int** matrix, size_t n) {
+    if (matrix == nullptr) return; // Me fijo si el puntero es null
     for (size_t i = 0; i < n; i++) {
         delete[] matrix[i]; // Liberar cada fila
     }
