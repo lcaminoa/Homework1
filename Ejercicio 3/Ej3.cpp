@@ -1,6 +1,6 @@
 /*
     Este programa implementa una lista simplemente enlazada usando smart pointers (unique_ptr).
-    Permite realizar operaciones como insertar elementos al inicio, al final o en una posición específica,
+    Permite realizar operaciones como insertar elementos al inicio, al final, en una posición específica,
     eliminar elementos de una posición específica y mostrar los elementos de la lista.
     Al usar unique_ptr, la memoria se maneja automaticamente, evitando leaks de memoria. El programa también
     maneja casos como índices inválidos o posiciones fuera del rango de la lista.

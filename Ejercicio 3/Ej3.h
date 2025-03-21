@@ -58,7 +58,7 @@ void insert(std::unique_ptr<List>& list, int value, int position);
 void erase(std::unique_ptr<List>& list, int position);
 
 /*
-    Función que imprime los valores de la lista enlazada.
+    Imprime los valores de la lista enlazada.
     Parámetros:
         - list: Unique pointer a la lista
 */
