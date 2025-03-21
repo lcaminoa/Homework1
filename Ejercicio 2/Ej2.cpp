@@ -15,7 +15,7 @@
 using namespace std;
 
 void logMessage(const string& mensaje, NivelSeveridad nivel) {
-    ofstream logFile("log.txt", ios::app); // Abrir el archivo en modo de adición
+    ofstream logFile("log.txt", ios::app); // Abrir el archivo en modo append
     if (!logFile.is_open()) { // Verificar si no hubo errores al abrir
         cerr << "No se pudo abrir el archivo de log." << endl;
         return;
